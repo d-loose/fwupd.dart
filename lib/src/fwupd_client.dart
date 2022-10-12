@@ -159,6 +159,10 @@ class FwupdClient {
         (signal) => _deviceRequest(signal.values[0].asStringVariantDict()));
   }
 
+  /// Refreshes the cached property values.
+  Future<void> refreshPropertyCache() async =>
+      _updateProperties(await _root.getAllProperties('org.freedesktop.fwupd'));
+
   /// Gets the devices being managed by fwupd.
   Future<List<FwupdDevice>> getDevices() async {
     var response = await _callMethod('GetDevices', [],
